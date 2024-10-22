@@ -1,0 +1,26 @@
+# Ignore Gradle files
+.gradle/
+build/
+**/build/
+
+# Ignore IntelliJ IDEA/Android Studio files
+.idea/
+*.iml
+
+# Ignore macOS files
+.DS_Store
+
+# Ignore local environment files
+local.properties
+
+# Ignore build outputs
+app/build/
+*.apk
+*.ap_
+*.dex
+*.class
+
+# Ignore Gradle wrapper
+gradlew
+gradlew.bat
+gradle/
