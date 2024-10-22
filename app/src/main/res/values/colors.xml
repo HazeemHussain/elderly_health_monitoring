@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="background_color">#B3BCA7</color>
+    <color name="gradient_start">#A3BA85</color>
+    <color name="gradient_end">#B3B8A5</color>
+    <color name="rectangle_2_color">#D9D9D9</color>
+    <color name="rectangle_1_color">#272927</color>
+    <color name="rectangle_3_color">#272928</color>
+    <color name="rectangle_4_color">#A57F59</color>
+
+</resources>
