@@ -10,7 +10,7 @@
         android:id="@+id/navBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FFF"
+        android:background="@drawable/bottombar_background"
         app:abb_indicatorAppearance="round"
         app:abb_indicatorHeight="4dp"
         app:abb_indicatorMargin="16dp"

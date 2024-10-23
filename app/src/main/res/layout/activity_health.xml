@@ -5,7 +5,134 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     tools:context=".HealthActivity">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="0dp"
+        android:background="#2C3B2E">
+
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="112dp"
+            android:layout_height="81dp"
+            android:contentDescription="App Logo"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lifeline_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/heart_rate_text"
+        android:background="@drawable/textview_background"
+        android:drawableLeft="@drawable/ic_heart_beat"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text=""
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toStartOf="@id/blood_pressure_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headBar"/>
+
+    <TextView
+        android:id="@+id/blood_pressure_text"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text=""
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/ic_blood_pressure"
+        android:background="@drawable/textview_background"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/heart_rate_text"
+        app:layout_constraintTop_toBottomOf="@id/headBar" />
+
+
+    <TextView
+        android:id="@+id/sleephrs_text"
+        android:background="@drawable/textview_background"
+        android:drawableLeft="@drawable/ic_sleep"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text=""
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toStartOf="@id/steps_text"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/heart_rate_text" />
+
+    <TextView
+        android:id="@+id/steps_text"
+        android:background="@drawable/textview_background"
+        android:drawableLeft="@drawable/ic_steps"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text=""
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/heart_rate_text"
+        app:layout_constraintTop_toBottomOf="@id/blood_pressure_text" />
+
+    <TextView
+        android:id="@+id/weight_text"
+        android:background="@drawable/textview_background"
+        android:drawableLeft="@drawable/ic_weight"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text=""
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintEnd_toStartOf="@id/steps_text"
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sleephrs_text"
+        />
 
 
 
@@ -13,7 +140,7 @@
         android:id="@+id/navBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#FFF"
+        android:background="@drawable/bottombar_background"
         app:abb_indicatorAppearance="round"
         app:abb_indicatorHeight="4dp"
         app:abb_indicatorMargin="16dp"

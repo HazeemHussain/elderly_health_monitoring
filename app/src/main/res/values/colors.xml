@@ -9,5 +9,10 @@
     <color name="rectangle_1_color">#272927</color>
     <color name="rectangle_3_color">#272928</color>
     <color name="rectangle_4_color">#A57F59</color>
+    <color name="gradient_start_color">#FF5722</color> <!-- Example orange color -->
+    <color name="gradient_end_color">#FFC107</color>   <!-- Example yellow color -->
+    <color name="stroke_color">#FF9800</color>        <!-- Stroke color matching gradient -->
+    <color name="transparent">#00000000</color>
+
 
 </resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "953427539358",
+    "project_id": "lifelineapp-b82fd",
+    "storage_bucket": "lifelineapp-b82fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:953427539358:android:a4de03cbf2e9523f8f928f",
+        "android_client_info": {
+          "package_name": "com.example.lifelineapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDG5UZ0fMCVVViFkUq5EGQg5FzV9Yq5BPw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
