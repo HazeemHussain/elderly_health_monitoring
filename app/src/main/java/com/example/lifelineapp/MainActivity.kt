@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.lifelineapp.model.PatientData
 import com.example.lifelineapp.utils.FullScreenUtil
 import nl.joery.animatedbottombar.AnimatedBottomBar
 
@@ -15,9 +16,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var heartRateText: TextView
     private lateinit var bloodPressureText: TextView
     private val healthDataRepository = HealthDataRepository()
+    val patientId = PatientData.patientId
 
     // Class-level variable for patient ID
-    private var patientId: String = "patient_1"
+   // private var patientId: String = "patient_1"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
