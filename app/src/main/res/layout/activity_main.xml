@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="@drawable/background_gradient"
+    android:background="@drawable/background_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -31,11 +31,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Heart Rate TextView -->
-
-    <!-- Blood Pressure TextView -->
-
-    <!-- Emergency Services Button -->
-
     <TextView
         android:id="@+id/heart_rate_text"
         android:drawableLeft="@drawable/ic_heart_beat"
@@ -43,7 +38,7 @@
         android:padding="8dp"
         android:text=""
         android:textColor="#000"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:background="@drawable/textview_background"
 
@@ -56,13 +51,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headBar" />
 
+    <!-- Blood Pressure TextView -->
     <TextView
         android:id="@+id/blood_pressure_text"
         android:gravity="center"
         android:padding="8dp"
         android:text=""
         android:textColor="#000"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         android:drawableLeft="@drawable/ic_blood_pressure"
         android:background="@drawable/textview_background"
@@ -77,71 +73,70 @@
         app:layout_constraintTop_toBottomOf="@id/headBar" />
 
 
-    <!-- Health Button -->
-
-    <!-- Calendar Button -->
-
-    <!-- Chat Button -->
-
-    <!-- Status Indicator -->
+    <!-- Emergency Services Button -->
     <android.widget.Button
         android:id="@+id/emergency_services_button"
-        android:background="@drawable/roundtext"
+        android:background="@drawable/rounded_calendar_background"
         android:drawableTop="@drawable/ic_call"
         android:text="Emergency Services"
         android:textStyle="bold"
-
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="@id/heart_rate_text"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toStartOf="@id/health_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/heart_rate_text" />
+        app:layout_constraintTop_toBottomOf="@id/heart_rate_text"
+        app:layout_constraintHorizontal_chainStyle="packed" />
 
+    <!-- Health Button -->
     <android.widget.Button
         android:id="@+id/health_button"
-        android:background="@drawable/roundtext"
+        android:background="@drawable/rounded_calendar_background"
         android:drawableTop="@drawable/ic_health"
         android:text="Health"
         android:textStyle="bold"
-
+        android:textColor="@color/black"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:layout_marginRight="10dp"
+        app:layout_constraintStart_toEndOf="@id/emergency_services_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/blood_pressure_text"
-        app:layout_constraintTop_toBottomOf="@id/blood_pressure_text" />
+        app:layout_constraintTop_toBottomOf="@id/heart_rate_text" />
 
+    <!-- Calendar Button -->
     <android.widget.Button
         android:id="@+id/calendar_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="124dp"
-        android:background="@drawable/roundtext"
+        android:background="@drawable/rounded_calendar_background"
         android:drawableTop="@drawable/ic_calendar"
         android:text="Calendar"
         android:textStyle="bold"
+        android:textColor="@color/black"
 
         app:layout_constraintEnd_toEndOf="@id/emergency_services_button"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emergency_services_button" />
 
+
+    <!-- Chat Button -->
     <android.widget.Button
         android:id="@+id/chat_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
         android:layout_marginRight="10dp"
-        android:background="@drawable/roundtext"
+        android:background="@drawable/rounded_calendar_background"
         android:drawableTop="@drawable/ic_chat"
         android:text="Chat"
+        android:textColor="@color/black"
         android:textStyle="bold"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -149,7 +144,7 @@
         app:layout_constraintStart_toStartOf="@id/health_button"
         app:layout_constraintTop_toBottomOf="@id/health_button" />
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Status Indicator -->
     <ImageView
         android:id="@+id/status_indicator"
         android:layout_width="60dp"
@@ -160,15 +155,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-
-
         app:layout_constraintTop_toBottomOf="@id/chat_button" />
 
+    <!-- Bottom Navigation Bar -->
     <nl.joery.animatedbottombar.AnimatedBottomBar
         android:id="@+id/navBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         android:background="@drawable/bottombar_background"
         app:abb_indicatorAppearance="round"
         app:abb_indicatorHeight="4dp"
@@ -176,7 +169,6 @@
         app:abb_selectedIndex="0"
         app:abb_tabs="@menu/navigation_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

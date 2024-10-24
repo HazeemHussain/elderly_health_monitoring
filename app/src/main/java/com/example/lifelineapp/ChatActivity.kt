@@ -17,11 +17,7 @@ class ChatActivity : AppCompatActivity() {
         // Set the activity to full-screen mode
         FullScreenUtil.setupFullScreenMode(this)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+
 
         // Set the activity to full-screen mode
         FullScreenUtil.setupFullScreenMode(this)

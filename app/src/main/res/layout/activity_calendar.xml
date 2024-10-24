@@ -5,10 +5,78 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_color"
     tools:context=".CalendarActivity">
 
+    <!-- Head Bar -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="0dp"
+        android:background="#2C3B2E">
+
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="112dp"
+            android:layout_height="81dp"
+            android:contentDescription="App Logo"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lifeline_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- CalendarView -->
+<!--    <com.prolificinteractive.materialcalendarview.MaterialCalendarView-->
+<!--        android:id="@+id/calendarView"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:layout_marginLeft="20dp"-->
+<!--        android:background="#F6DEBA"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        app:mcv_showOtherDates="all"-->
+<!--        android:backgroundTint="@null"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/headBar"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--         />-->
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        app:mcv_showOtherDates="all"
+        android:background="@drawable/rounded_calendar_background"
+
+        app:mcv_headerTextAppearance="@style/CustomHeaderTextAppearance"
+        app:mcv_weekDayTextAppearance="@style/CustomWeekdayTextAppearance"
+        app:mcv_dateTextAppearance="@style/CustomDateTextAppearance"
+        app:layout_constraintTop_toBottomOf="@id/headBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 
+
+    <!-- RecyclerView for Upcoming Appointments -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appointmentsRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/calendarView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/navBar"/>
+
+    <!-- Bottom Navigation Bar -->
     <nl.joery.animatedbottombar.AnimatedBottomBar
         android:id="@+id/navBar"
         android:layout_width="0dp"

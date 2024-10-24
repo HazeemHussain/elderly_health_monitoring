@@ -1,6 +1,10 @@
 package com.example.lifelineapp
 
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -10,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.lifelineapp.model.PatientData
 import com.example.lifelineapp.utils.FullScreenUtil
 import nl.joery.animatedbottombar.AnimatedBottomBar
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HealthActivity : AppCompatActivity() {
 
@@ -19,7 +25,7 @@ class HealthActivity : AppCompatActivity() {
     private lateinit var stepsTextView: TextView
     private lateinit var weightTextView: TextView
     private val healthDataRepository = HealthDataRepository()
-    val patientId = PatientData.patientId
+    val patientId = PatientData.patientId // Calling the patient Id
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,24 +35,20 @@ class HealthActivity : AppCompatActivity() {
         // Set the activity to full-screen mode
         FullScreenUtil.setupFullScreenMode(this)
 
-        //Initialize UI Components
+        // Initialize UI Components
         initializeUIComponents()
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-
-        // Call function to load data using the patientId variable
+        // Load and display static patient data
         loadPatientData(patientId)
+
+        // Start the heart rate and blood pressure simulations
+        startHeartRateSimulation(patientId)
+        startBloodPressureSimulation(patientId)
 
         // Find the bottom bar in the layout and set it up using the utility function
         val bottomBar = findViewById<AnimatedBottomBar>(R.id.navBar)
         BottomBarUtils.setupBottomBar(this, bottomBar)
     }
-
-
 
     /**
      * Retrieve and display health data for the patient.
@@ -54,26 +56,6 @@ class HealthActivity : AppCompatActivity() {
     private fun loadPatientData(patientId: String) {
         healthDataRepository.getHealthData(patientId) { healthData ->
             if (healthData != null) {
-                // Display heart rate
-                if (healthData.heartBeats.isNotEmpty()) {
-                    val averageHeartRate = healthData.heartBeats.average().toInt()
-                    heartRateText.text = "Heart Rate: $averageHeartRate bpm"
-                    Log.d("HealthActivity", "Heart Rate Data Loaded: $averageHeartRate")
-                } else {
-                    heartRateText.text = "No heart rate data available"
-                    Log.d("HealthActivity", "No heart rate data found or data is empty.")
-                }
-
-                // Display the latest blood pressure
-                val latestBloodPressure = healthData.bloodPressure.lastOrNull()
-                if (latestBloodPressure != null) {
-                    bloodPressureText.text = "Blood Pressure: ${latestBloodPressure.systolic}/${latestBloodPressure.diastolic} mmHg"
-                    Log.d("HealthActivity", "Blood Pressure Data Loaded: ${latestBloodPressure.systolic}/${latestBloodPressure.diastolic}")
-                } else {
-                    bloodPressureText.text = "No blood pressure data available"
-                    Log.d("HealthActivity", "No blood pressure data found.")
-                }
-
                 // Display sleep hours
                 sleepHrsText.text = "Sleep Hours: ${healthData.sleepHrs} hrs"
                 Log.d("HealthActivity", "Sleep Hours Data Loaded: ${healthData.sleepHrs}")
@@ -97,6 +79,69 @@ class HealthActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Start heart rate simulation and update the TextView in real-time.
+     */
+    private fun startHeartRateSimulation(patientId: String) {
+        healthDataRepository.startHeartRateSimulation(patientId) { heartRate ->
+            heartRate?.let {
+                val timestamp = getCurrentTime()
+                val text = "Heart Rate: $it bpm\nLast Updated: $timestamp secs ago"
+                heartRateText.text = formatText(text, "Last Updated: $timestamp secs ago")
+                Log.d("HealthActivity", "Heart Rate Updated: $it at $timestamp")
+            } ?: run {
+                heartRateText.text = "No heart rate data available"
+                Log.d("HealthActivity", "No heart rate data found.")
+            }
+        }
+    }
+
+    /**
+     * Start blood pressure simulation and update the TextView in real-time.
+     */
+    private fun startBloodPressureSimulation(patientId: String) {
+        healthDataRepository.startBloodPressureSimulation(patientId) { bloodPressure ->
+            bloodPressure?.let {
+                val timestamp = getCurrentTime()
+                val text = "Blood Pressure: ${it.systolic}/${it.diastolic} mmHg\nLast Updated: $timestamp secs ago"
+                bloodPressureText.text = formatText(text, "Last Updated: $timestamp secs ago")
+                Log.d("HealthActivity", "Blood Pressure Updated: ${it.systolic}/${it.diastolic} at $timestamp")
+            } ?: run {
+                bloodPressureText.text = "No blood pressure data available"
+                Log.d("HealthActivity", "No blood pressure data found.")
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // Stop the simulation when the activity is destroyed to prevent memory leaks
+        healthDataRepository.stopSimulation()
+    }
+
+    /**
+     * Format the text for the "Last Updated" part to be smaller and different style.
+     */
+    private fun formatText(fullText: String, updateTimeText: String): SpannableString {
+        val spannable = SpannableString(fullText)
+        val startIndex = fullText.indexOf(updateTimeText)
+        val endIndex = startIndex + updateTimeText.length
+
+        // Make the "Last Updated" part smaller
+        spannable.setSpan(RelativeSizeSpan(0.6f), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        // Apply italic style
+        spannable.setSpan(StyleSpan(android.graphics.Typeface.ITALIC), startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+        return spannable
+    }
+
+    /**
+     * Get the current time formatted as "ss".
+     */
+    private fun getCurrentTime(): String {
+        val dateFormat = SimpleDateFormat("ss", Locale.getDefault())
+        return dateFormat.format(Date())
+    }
 
     /**
      * Initialize UI components and assign them to the corresponding views.
@@ -108,7 +153,5 @@ class HealthActivity : AppCompatActivity() {
         sleepHrsText = findViewById(R.id.sleephrs_text)
         stepsTextView = findViewById(R.id.steps_text)
         weightTextView = findViewById(R.id.weight_text)
-
     }
-
 }

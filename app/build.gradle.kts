@@ -54,4 +54,7 @@ dependencies {
     // Other libraries
     implementation("nl.joery.animatedbottombar:library:1.0.3")
     implementation("com.google.android.flexbox:flexbox:3.0.0")
+    implementation ("com.prolificinteractive:material-calendarview:1.4.3")
+
+
 }
