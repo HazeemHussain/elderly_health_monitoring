@@ -55,6 +55,9 @@ dependencies {
     implementation("nl.joery.animatedbottombar:library:1.0.3")
     implementation("com.google.android.flexbox:flexbox:3.0.0")
     implementation ("com.prolificinteractive:material-calendarview:1.4.3")
-
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
 }
