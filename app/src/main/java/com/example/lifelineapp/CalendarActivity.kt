@@ -1,5 +1,6 @@
 package com.example.lifelineapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +12,7 @@ import com.example.lifelineapp.model.Appointment
 
 import com.example.lifelineapp.utils.FullScreenUtil
 import com.example.lifelineapp.utils.SpaceItemRecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.*
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
@@ -56,6 +58,12 @@ class CalendarActivity : AppCompatActivity() {
 
         // Fetch appointments from Firebase
         fetchAppointments()
+
+        val addAppointmentButton: FloatingActionButton = findViewById(R.id.addAppointmentButton)
+        addAppointmentButton.setOnClickListener {
+            val intent = Intent(this, AddAppointmentActivity::class.java)
+            startActivity(intent)
+        }
 
         // Set up bottom bar
         val bottomBar = findViewById<AnimatedBottomBar>(R.id.navBar)
