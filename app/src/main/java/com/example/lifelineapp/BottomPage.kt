@@ -11,12 +11,6 @@ class BottomPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_page)
 
-        // Set the activity to full-screen mode
-        FullScreenUtil.setupFullScreenMode(this)
 
-        val bottomBar = findViewById<AnimatedBottomBar>(R.id.navBar)
-
-        // Use the utility function to set up the bottom bar
-        BottomBarUtils.setupBottomBar(this, bottomBar)
     }
 }

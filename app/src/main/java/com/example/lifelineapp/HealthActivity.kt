@@ -1,5 +1,7 @@
 package com.example.lifelineapp
-
+/**
+ * Health Activity class that retrieves and handles all the health data
+ */
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -51,6 +53,9 @@ class HealthActivity : AppCompatActivity() {
         BottomBarUtils.setupBottomBar(this, bottomBar)
     }
 
+    /**
+     * Displays patient data
+     */
     private fun loadPatientData() {
         healthDataRepository.getHealthData { healthData ->
             if (healthData != null) {
@@ -67,6 +72,9 @@ class HealthActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Start's heart beat simulation
+     */
     private fun startHeartRateSimulation() {
         healthDataRepository.startHeartRateSimulation(this) { heartRate ->
             heartRate?.let {
@@ -77,6 +85,9 @@ class HealthActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Notifies emergency contacts in case of emergency
+     */
     fun promptUserToNotifyEmergencyContact() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Emergency Detected")
@@ -96,6 +107,9 @@ class HealthActivity : AppCompatActivity() {
         builder.create().show()
     }
 
+    /**
+     * Start's Blood Pressure simulation
+     */
     private fun startBloodPressureSimulation() {
         healthDataRepository.startBloodPressureSimulation { bloodPressure ->
             bloodPressure?.let {
@@ -120,10 +134,24 @@ class HealthActivity : AppCompatActivity() {
         return spannable
     }
 
+    /**
+     * Getting current time
+     */
     private fun getCurrentTime(): String {
         val dateFormat = SimpleDateFormat("ss", Locale.getDefault())
         return dateFormat.format(Date())
     }
+
+    /**
+     * Resuming bottom bar
+      */
+    override fun onResume() {
+        super.onResume()
+        val bottomBar = findViewById<AnimatedBottomBar>(R.id.navBar)
+        bottomBar.selectTabById(R.id.nav_health, animate = false)
+    }
+
+
 
     private fun initializeUIComponents() {
         heartRateText = findViewById(R.id.heart_rate_text)

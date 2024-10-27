@@ -190,7 +190,7 @@ class ProfileActivity : AppCompatActivity() {
         // Set up the input
         val input = EditText(this)
         input.hint = "Enter your new Phone Number"
-        input.inputType = InputType.TYPE_CLASS_PHONE 
+        input.inputType = InputType.TYPE_CLASS_PHONE
 
         builder.setView(input)
 

@@ -25,8 +25,9 @@ class LoginActivity : AppCompatActivity() {
         // Initialize the loading bar
         loadingBar = ProgressDialog(this)
 
-        // Apply full-screen and immersive mode settings
-        FullScreenUtil.setupFullScreenMode(this)
+        // Apply full-screen and immersive mode settings and enabling back button
+        FullScreenUtil.setupFullScreenMode(this, enableBackButton = true)
+
 
         val usernameEditText = findViewById<EditText>(R.id.username)
         val passwordEditText = findViewById<EditText>(R.id.password)

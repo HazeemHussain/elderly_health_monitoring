@@ -29,15 +29,18 @@ object BottomBarUtils {
 
                 // Allow the animation to complete before switching activities
                 Handler(Looper.getMainLooper()).postDelayed({
-                    when (newTab.id) {
-                        //R.id.nav_home -> context.startActivity(Intent(context, MainActivity::class.java))
-                        R.id.nav_health -> context.startActivity(Intent(context, HealthActivity::class.java))
-                        R.id.nav_chat -> context.startActivity(Intent(context, ProfileActivity::class.java))
-                        R.id.nav_calendar -> context.startActivity(Intent(context, CalendarActivity::class.java))
-                        R.id.nav_call -> context.startActivity(Intent(context, CallActivity::class.java))
-                        else -> Log.e("BottomBarUtils", "Unknown tab selected: ${newTab.id}")
+                    val intent = when (newTab.id) {
+                        R.id.nav_profile -> Intent(context, ProfileActivity::class.java)
+                        R.id.nav_health -> Intent(context, HealthActivity::class.java)
+                        R.id.nav_calendar -> Intent(context, CalendarActivity::class.java)
+                        R.id.nav_call -> Intent(context, CallActivity::class.java)
+                        else -> null
                     }
-                }, 200) // 200 milliseconds delay (adjust if necessary)
+                    intent?.apply {
+                        flags =  Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        context.startActivity(this)
+                    }
+                }, 200) // 200 milliseconds delay
             }
 
              fun onTabReselected(index: Int, tab: AnimatedBottomBar.Tab) {
