@@ -30,7 +30,7 @@ object BottomBarUtils {
                 // Allow the animation to complete before switching activities
                 Handler(Looper.getMainLooper()).postDelayed({
                     when (newTab.id) {
-                        R.id.nav_home -> context.startActivity(Intent(context, MainActivity::class.java))
+                        //R.id.nav_home -> context.startActivity(Intent(context, MainActivity::class.java))
                         R.id.nav_health -> context.startActivity(Intent(context, HealthActivity::class.java))
                         R.id.nav_chat -> context.startActivity(Intent(context, ProfileActivity::class.java))
                         R.id.nav_calendar -> context.startActivity(Intent(context, CalendarActivity::class.java))

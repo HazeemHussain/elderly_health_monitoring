@@ -10,58 +10,51 @@
     android:background="@drawable/background_color">
 
     <!-- Header Bar Section -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headBar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/app_logo"
-            android:layout_width="112dp"
-            android:layout_height="81dp"
-            android:layout_marginTop="50dp"
-            android:contentDescription="App Logo"
-            android:scaleType="centerCrop"
-            android:src="@drawable/lifeline_logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="112dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="50dp"
+        android:contentDescription="App Logo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/lifeline_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- Login Form Section -->
-    <!-- Bottom Navigation Bar -->
     <LinearLayout
         android:id="@+id/settingsSection"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="156dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="284dp"
         android:background="@drawable/rectangle_2_shape"
         android:orientation="vertical"
         android:padding="16dp"
-
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headBar">">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Password Section with Label and Button -->
         <TextView
             android:id="@+id/accountSettingsHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:text="Login "
+            android:text="Login"
             android:textColor="@color/black"
             android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profileSection" />
+            android:textStyle="bold" />
+
+        <!-- Line directly below Login heading, centered -->
+        <View
+            android:layout_width="70dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:background="#000000" />
 
         <EditText
             android:id="@+id/username"
@@ -69,9 +62,17 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_2_shape"
             android:hint="Username"
+            android:drawableLeft="@drawable/ic_account"
             android:textColorHint="@color/black"
             android:padding="10dp"
             android:textColor="@android:color/black" />
+
+        <!-- Line below Username field -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="#000000" />
 
         <EditText
             android:id="@+id/password"
@@ -80,20 +81,44 @@
             android:layout_marginTop="16dp"
             android:background="@drawable/rectangle_2_shape"
             android:hint="Password"
+            android:drawableLeft="@drawable/ic_passwordlogo"
             android:textColorHint="@color/black"
             android:inputType="textPassword"
             android:padding="10dp"
             android:textColor="@android:color/black" />
 
-        <CheckBox
-            android:id="@+id/showPassword"
-            android:layout_width="wrap_content"
+        <!-- Line below Password field -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="#000000" />
+
+        <!-- Horizontal Layout for Show Password and Forgot Password Button -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Show Password"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            />
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <CheckBox
+                android:id="@+id/showPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Show Password"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <android.widget.Button
+                android:id="@+id/forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:text="Forgot Password?"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <android.widget.Button
             android:id="@+id/loginButton"

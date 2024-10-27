@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText = findViewById<EditText>(R.id.password)
         val loginButton = findViewById<Button>(R.id.loginButton)
         val showPassword = findViewById<CheckBox>(R.id.showPassword)
+        val forgotPassword = findViewById<Button>(R.id.forgot_password)
 
         // Show/hide password
         showPassword.setOnCheckedChangeListener { _, isChecked ->
@@ -53,6 +54,14 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please enter username and password", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        //ForgotPassword button functionality
+        forgotPassword.setOnClickListener() {
+            // Navigate back to the login screen
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+
         }
     }
 
@@ -78,7 +87,6 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
 
                     // Set the patient ID in PatientData
-                    // Set the patient ID in PatientData
                     PatientData.patientId = username
 
                     // Navigate to Dashboard
@@ -99,5 +107,6 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Login failed: ${exception.message}", Toast.LENGTH_SHORT).show()
         }
     }
+
 
 }

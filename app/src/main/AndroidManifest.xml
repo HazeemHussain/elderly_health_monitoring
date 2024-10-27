@@ -16,7 +16,7 @@
         android:theme="@style/Theme.LifelineApp"
         tools:targetApi="31">
         <activity
-            android:name=".ForgotActivity"
+            android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
