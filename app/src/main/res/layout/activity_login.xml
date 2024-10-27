@@ -60,6 +60,7 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rectangle_2_shape"
             android:hint="Username"
             android:drawableLeft="@drawable/ic_account"
@@ -71,7 +72,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="1dp"
             android:background="#000000" />
 
         <EditText
@@ -91,7 +92,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="1dp"
             android:background="#000000" />
 
         <!-- Horizontal Layout for Show Password and Forgot Password Button -->
@@ -99,7 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="25dp">
 
             <CheckBox
                 android:id="@+id/showPassword"

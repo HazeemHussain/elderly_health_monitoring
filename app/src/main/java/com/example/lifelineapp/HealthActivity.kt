@@ -25,7 +25,7 @@ class HealthActivity : AppCompatActivity() {
     private lateinit var stepsTextView: TextView
     private lateinit var weightTextView: TextView
     private lateinit var statusIndicator: ImageView
-
+    private lateinit var statusText: TextView
     private val healthDataRepository = HealthDataRepository(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,6 +85,8 @@ class HealthActivity : AppCompatActivity() {
             healthDataRepository.notifyEmergencyContact()
             Toast.makeText(this, "Emergency contact notified", Toast.LENGTH_SHORT).show()
             statusIndicator.setImageResource(R.drawable.ic_emergency_alert)
+            statusText.text = "Status: Emergency"
+
             dialog.dismiss()
         }
         builder.setNegativeButton("No") { dialog, _ ->
@@ -130,5 +132,6 @@ class HealthActivity : AppCompatActivity() {
         stepsTextView = findViewById(R.id.steps_text)
         weightTextView = findViewById(R.id.weight_text)
         statusIndicator = findViewById(R.id.status_indicator)
+        statusText = findViewById(R.id.status_text)
     }
 }

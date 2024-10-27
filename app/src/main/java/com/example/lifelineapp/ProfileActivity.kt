@@ -32,6 +32,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var logoutBtn: Button
     private lateinit var changePass: Button
     private lateinit var addContacts: Button
+    private lateinit var changePhoneno: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,8 +77,18 @@ class ProfileActivity : AppCompatActivity() {
             finish() // Ends the current activity
         }
 
+        /**
+         * Change Password Functionality
+         */
         changePass.setOnClickListener() {
             showDialogChangePassword()
+        }
+
+        /**
+         * Change Phone No Functionality
+         */
+        changePhoneno.setOnClickListener() {
+            changePhoneNo()
         }
 
         /**
@@ -167,6 +178,46 @@ class ProfileActivity : AppCompatActivity() {
         builder.show()
     }
 
+
+    /**
+     *Shows password dialogue where user can add new password
+     */
+    private fun changePhoneNo() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Change Phone Number")
+        builder.setIcon(R.drawable.ic_call)
+
+        // Set up the input
+        val input = EditText(this)
+        input.hint = "Enter your new Phone Number"
+        input.inputType = InputType.TYPE_CLASS_PHONE 
+
+        builder.setView(input)
+
+        // Set up the buttons
+        builder.setPositiveButton("Confirm") { _, _ ->
+            val newPhoneNo = input.text.toString().trim()
+
+            if (newPhoneNo.isNotEmpty()) {
+                // Update password in Firebase
+                val userRef = database.child("users").child("patients").child(patientId).child("patientDetails")
+                userRef.child("PhoneNo").setValue(newPhoneNo)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Password has been changed successfully", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, "Failed to change password", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+            } else {
+                Toast.makeText(this, "Password cannot be empty", Toast.LENGTH_SHORT).show()
+            }
+        }
+        builder.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
+
+        builder.show()
+    }
+
     /**
      *Initializing UI components
      */
@@ -177,6 +228,7 @@ class ProfileActivity : AppCompatActivity() {
         logoutBtn = findViewById<Button>(R.id.logoutBtn)
         changePass = findViewById<Button>(R.id.changePasswordBtn)
         addContacts = findViewById<Button>(R.id.add_contactsbtn)
+        changePhoneno = findViewById<Button>(R.id.changePhonenoBtn)
     }
 
 }

@@ -1,10 +1,7 @@
 package com.example.lifelineapp
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,8 +11,6 @@ import com.google.firebase.database.FirebaseDatabase
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
 import com.example.lifelineapp.utils.FullScreenUtil
 
 class AddEmergencyContacts : AppCompatActivity() {
@@ -55,6 +50,10 @@ class AddEmergencyContacts : AppCompatActivity() {
         saveButton.setOnClickListener {
             saveEmergencyContact()
         }
+
+        backButton.setOnClickListener {
+            finish() // This will close the current activity and go back to the previous one
+        }
     }
 
     private fun saveEmergencyContact() {
@@ -71,10 +70,10 @@ class AddEmergencyContacts : AppCompatActivity() {
 
         // Prepare the data map to be saved
         val emergencyContactData = mapOf(
-            "name" to name,
-            "phoneNo" to phoneNo,
-            "address" to address,
-            "relationship" to relationship
+            "Name" to name,
+            "PhoneNo" to phoneNo,
+            "Address" to address,
+            "Relationship" to relationship
         )
 
         // Save the data to Firebase
