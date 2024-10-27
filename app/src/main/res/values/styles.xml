@@ -23,4 +23,18 @@
     <style name="CustomDateTextAppearance" parent="TextAppearance.MaterialCalendarWidget.Date">
         <item name="android:textColor">#000000</item>
     </style>
+
+    <string-array name="relationship_options">
+        <item>Friend</item>
+        <item>Family</item>
+        <item>Colleague</item>
+        <item>Son</item>
+        <item>Daughter</item>
+        <item>Wife</item>
+        <item>Husband</item>
+        <item>Neighbor</item>
+        <item>Other</item>
+    </string-array>
+
+
 </resources>

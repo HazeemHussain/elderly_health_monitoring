@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,114 +9,131 @@
     android:background="@drawable/background_color"
     tools:context=".AddAppointmentActivity">
 
-    <!-- Head Bar -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/headBar"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#2C3B2E">
+    <!-- Header Bar Section with Back Button -->
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="61dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:contentDescription="Back Button"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/backButton"
-            android:layout_width="61dp"
-            android:layout_height="54dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:contentDescription="Back Button"
-            android:src="@drawable/ic_back"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/app_logo"
+        android:layout_width="112dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="50dp"
+        android:contentDescription="App Logo"
+        android:scaleType="centerCrop"
+        android:src="@drawable/lifeline_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageView
-            android:id="@+id/app_logo"
-            android:layout_width="112dp"
-            android:layout_height="81dp"
-            android:contentDescription="App Logo"
-            android:scaleType="centerCrop"
-            android:src="@drawable/lifeline_logo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Form for Adding Appointment -->
+    <!-- Form Section with Styled Background -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="90dp"
+        android:id="@+id/addAppointmentSection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="200dp"
+        android:background="@drawable/rectangle_2_shape"
         android:orientation="vertical"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/headBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_logo">
 
-        >
-
+        <!-- Title -->
         <TextView
+            android:id="@+id/appointmentTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Appointment Date"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:paddingBottom="8dp"/>
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:text="Add Appointment"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
-        <TextView
+        <View
+            android:layout_width="210dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="4dp"
+            android:background="#000000" />
+
+        <!-- Date Selection -->
+        <EditText
             android:id="@+id/appointmentDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/textview_background"
+            android:background="@drawable/rectangle_2_shape"
             android:padding="12dp"
             android:hint="Select Date"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textColorHint="@color/black"
             android:textSize="16sp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Time"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:paddingBottom="8dp"
-            android:layout_marginTop="16dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="#000000" />
 
-        <TextView
+        <!-- Time Selection -->
+        <EditText
             android:id="@+id/appointmentTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/textview_background"
+            android:background="@drawable/rectangle_2_shape"
             android:padding="12dp"
             android:hint="Select Time"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="16sp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Type Address"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:paddingBottom="8dp"
-            android:layout_marginTop="16dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="#000000" />
 
+        <!-- Address Field -->
         <EditText
             android:id="@+id/addressEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Address"
-            android:background="@drawable/textview_background"
+            android:textStyle="bold"
+            android:background="@drawable/rectangle_2_shape"
             android:padding="12dp"
             android:layout_marginTop="10dp"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
 
-        <Button
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="4dp"
+            android:background="#000000" />
+
+        <!-- Save Button -->
+        <android.widget.Button
             android:id="@+id/saveButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save Appointment"
-            android:textColor="@color/black"
-            android:layout_gravity="center"
-            android:background="@drawable/rounded_calendar_background"
+            android:textColor="@color/white"
+            android:background="@drawable/button_shape"
             android:layout_marginTop="24dp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

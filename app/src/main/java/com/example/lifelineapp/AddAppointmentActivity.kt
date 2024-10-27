@@ -108,4 +108,6 @@ class AddAppointmentActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to add appointment", Toast.LENGTH_SHORT).show()
             }
     }
+
+
 }

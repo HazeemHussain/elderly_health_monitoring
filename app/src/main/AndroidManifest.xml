@@ -16,6 +16,9 @@
         android:theme="@style/Theme.LifelineApp"
         tools:targetApi="31">
         <activity
+            android:name=".AddEmergencyContacts"
+            android:exported="false" />
+        <activity
             android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity

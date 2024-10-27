@@ -82,6 +82,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_2_shape"
             android:hint="Enter your DOB"
+            android:drawableLeft="@drawable/ic_dob"
             android:padding="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@color/black" />
@@ -99,7 +100,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rectangle_2_shape"
             android:hint="Enter your contact no"
-            android:drawableLeft="@drawable/ic_contacts"
+            android:drawableLeft="@drawable/ic_phoneno"
             android:padding="10dp"
             android:textColor="@android:color/black"
             android:textColorHint="@color/black" />
