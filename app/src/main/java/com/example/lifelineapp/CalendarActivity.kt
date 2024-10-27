@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lifelineapp.adapters.AppointmentsAdapter
 import com.example.lifelineapp.model.Appointment
+import com.example.lifelineapp.model.PatientData
 
 import com.example.lifelineapp.utils.FullScreenUtil
 import com.example.lifelineapp.utils.SpaceItemRecyclerView
@@ -28,6 +29,7 @@ class CalendarActivity : AppCompatActivity() {
     private val appointmentsList = mutableListOf<Appointment>()
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val patientId = PatientData.patientId
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +73,6 @@ class CalendarActivity : AppCompatActivity() {
     }
 
     private fun fetchAppointments() {
-        val patientId = "patient_1"  // Use the actual patient ID as needed
         database.child("users").child("patients").child(patientId).child("appointments")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

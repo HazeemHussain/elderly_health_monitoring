@@ -134,11 +134,12 @@
         />
 
     <!-- Status Indicator -->
+
     <ImageView
         android:id="@+id/status_indicator"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="92dp"
         android:contentDescription="Status Indicator"
         android:src="@drawable/ic_status_ok"
         app:layout_constraintEnd_toEndOf="parent"
@@ -159,7 +160,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         android:layout_marginBottom="0dp"
         />
 

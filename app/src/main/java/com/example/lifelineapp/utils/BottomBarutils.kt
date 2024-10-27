@@ -2,7 +2,6 @@ package com.example.lifelineapp
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -33,7 +32,7 @@ object BottomBarUtils {
                     when (newTab.id) {
                         R.id.nav_home -> context.startActivity(Intent(context, MainActivity::class.java))
                         R.id.nav_health -> context.startActivity(Intent(context, HealthActivity::class.java))
-                        R.id.nav_chat -> context.startActivity(Intent(context, ChatActivity::class.java))
+                        R.id.nav_chat -> context.startActivity(Intent(context, ProfileActivity::class.java))
                         R.id.nav_calendar -> context.startActivity(Intent(context, CalendarActivity::class.java))
                         R.id.nav_call -> context.startActivity(Intent(context, CallActivity::class.java))
                         else -> Log.e("BottomBarUtils", "Unknown tab selected: ${newTab.id}")

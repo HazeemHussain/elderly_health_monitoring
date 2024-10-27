@@ -2,6 +2,7 @@ package com.example.lifelineapp
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -10,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lifelineapp.model.PatientData
+import com.example.lifelineapp.utils.FullScreenUtil
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
@@ -28,6 +30,9 @@ class AddAppointmentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_appointment)
+
+        // Set the activity to full-screen mode
+        FullScreenUtil.setupFullScreenMode(this)
 
         // Initialize views
         appointmentDateText = findViewById(R.id.appointmentDate)
@@ -63,6 +68,8 @@ class AddAppointmentActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             finish() // This will close the current activity and go back to the previous one
         }
+
+
     }
 
     private fun updateDateLabel() {
@@ -89,8 +96,14 @@ class AddAppointmentActivity : AppCompatActivity() {
         newAppointmentRef.setValue(mapOf("Date" to date, "Time" to time, "Address" to address))
             .addOnSuccessListener {
                 Toast.makeText(this, "Appointment added successfully", Toast.LENGTH_SHORT).show()
-                finish() // Close the activity after saving
+
+                // Navigate back to the CalendarActivity
+                val intent = Intent(this, CalendarActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish() // Close the current activity
             }
+
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to add appointment", Toast.LENGTH_SHORT).show()
             }

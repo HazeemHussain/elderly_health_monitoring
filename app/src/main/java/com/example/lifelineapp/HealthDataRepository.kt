@@ -1,24 +1,24 @@
 package com.example.lifelineapp
 
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.widget.Toast
 import com.example.lifelineapp.model.BloodPressure
 import com.example.lifelineapp.model.HealthData
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.example.lifelineapp.model.PatientData
+import com.google.firebase.database.*
 
-class HealthDataRepository {
+class HealthDataRepository(private val appContext: Context) {
 
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
     private val handler = Handler(Looper.getMainLooper())
     private val updateInterval: Long = 10000 // 10 seconds
+    private val patientId = PatientData.patientId
 
     // Function to retrieve health data for a patient
-    fun getHealthData(patientId: String, callback: (HealthData?) -> Unit) {
+    fun getHealthData(callback: (HealthData?) -> Unit) {
         database.child("users").child("patients").child(patientId).child("healthData")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -54,9 +54,9 @@ class HealthDataRepository {
             })
     }
 
-    // Function to simulate heart rate changes every 10 seconds
-    fun startHeartRateSimulation(patientId: String, callback: (Int?) -> Unit) {
-        getHeartBeats(patientId) { heartBeats ->
+    // Function to simulate heart rate changes and detect abnormal values
+    fun startHeartRateSimulation(context: HealthActivity, callback: (Int?) -> Unit) {
+        getHeartBeats { heartBeats ->
             if (heartBeats != null && heartBeats.isNotEmpty()) {
                 var index = 0
                 val updateTask = object : Runnable {
@@ -64,6 +64,12 @@ class HealthDataRepository {
                         val heartRate = heartBeats[index]
                         callback(heartRate)
                         Log.d("HealthDataRepository", "Heart Rate Updated: $heartRate")
+
+                        // Check for abnormal heart rate
+                        if (heartRate < 60 || heartRate > 120) {
+                            // Ask user for confirmation via activity
+                            context.promptUserToNotifyEmergencyContact()
+                        }
 
                         // Cycle through the heart rates
                         index = (index + 1) % heartBeats.size
@@ -78,9 +84,29 @@ class HealthDataRepository {
         }
     }
 
+    // Function to notify emergency contacts
+    fun notifyEmergencyContact() {
+        database.child("users").child("patients").child(patientId).child("EmergencyContacts")
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    for (contactSnapshot in snapshot.children) {
+                        val name = contactSnapshot.child("Name").getValue(String::class.java) ?: ""
+                        val phoneNo = contactSnapshot.child("PhoneNo").getValue(String::class.java) ?: ""
+
+                        Log.d("HealthDataRepository", "Notifying $name at $phoneNo")
+                        Toast.makeText(appContext, "Notifying $name at $phoneNo", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("HealthDataRepository", "Failed to retrieve emergency contacts", error.toException())
+                }
+            })
+    }
+
     // Function to simulate blood pressure changes every 10 seconds
-    fun startBloodPressureSimulation(patientId: String, callback: (BloodPressure?) -> Unit) {
-        getHealthData(patientId) { healthData ->
+    fun startBloodPressureSimulation(callback: (BloodPressure?) -> Unit) {
+        getHealthData { healthData ->
             if (healthData != null && healthData.bloodPressure.isNotEmpty()) {
                 var index = 0
                 val updateTask = object : Runnable {
@@ -107,7 +133,8 @@ class HealthDataRepository {
         handler.removeCallbacksAndMessages(null)
     }
 
-    fun getHeartBeats(patientId: String, callback: (List<Int>?) -> Unit) {
+    // Retrieve heart beats for a patient
+    fun getHeartBeats(callback: (List<Int>?) -> Unit) {
         database.child("users").child("patients").child(patientId).child("healthData").child("HeartBeats")
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {

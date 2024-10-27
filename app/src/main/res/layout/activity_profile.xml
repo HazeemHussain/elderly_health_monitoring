@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_color"
+    tools:context=".ProfileActivity">
+
+    <!-- Header Bar Section -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#2C3B2E"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="112dp"
+            android:layout_height="81dp"
+            android:contentDescription="App Logo"
+            android:scaleType="centerCrop"
+            android:src="@drawable/lifeline_logo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- User Profile Section -->
+    <LinearLayout
+        android:id="@+id/profileSection"
+        android:layout_width="403dp"
+        android:layout_height="233dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headBar">
+
+        <ImageView
+            android:id="@+id/profileImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:contentDescription="Profile Picture"
+            android:src="@drawable/ic_contact_placeholder" />
+
+        <TextView
+            android:id="@+id/patient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Full Name"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/patient_dob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="DOB"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/phoneNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="Phone Number"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+    <!-- Bottom Navigation Bar -->
+    <LinearLayout
+        android:id="@+id/settingsSection"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/rectangle_2_shape"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toTopOf="@id/navBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileSection"
+        app:layout_constraintVertical_bias="0.341">
+
+        <!-- Password Section with Label and Button -->
+        <TextView
+            android:id="@+id/accountSettingsHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:text="Account Settings"
+            android:textColor="@color/black"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileSection" />
+
+        <LinearLayout
+            android:id="@+id/passwordSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/passwordHeading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_passwordlogo"
+                android:drawablePadding="8dp"
+                android:text="Password"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <android.widget.Button
+                android:id="@+id/changePasswordBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_shape"
+                android:text="Change"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000000" />
+
+        <LinearLayout
+            android:id="@+id/emergency_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:id="@+id/emergency_heading"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_contacts"
+                android:drawablePadding="8dp"
+                android:text="Add Emergency Contact"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <android.widget.Button
+                android:id="@+id/add_contactsbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_shape"
+                android:text="Add"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#000000" />
+
+        <!-- Logout Button -->
+        <android.widget.Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/button_shape"
+            android:text="Logout"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <nl.joery.animatedbottombar.AnimatedBottomBar
+        android:id="@+id/navBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottombar_background"
+        app:abb_indicatorAppearance="round"
+        app:abb_indicatorHeight="4dp"
+        app:abb_indicatorMargin="16dp"
+        app:abb_selectedIndex="0"
+        app:abb_tabs="@menu/navigation_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
