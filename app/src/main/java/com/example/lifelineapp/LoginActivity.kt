@@ -90,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
                     // Set the patient ID in PatientData
                     PatientData.patientId = username
 
-                    // Navigate to Dashboard
+                    // Navigate to Health activity page
                     val intent = Intent(this, HealthActivity::class.java)
                     startActivity(intent)
                     finish() // Prevent back navigation to login

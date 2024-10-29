@@ -7,6 +7,7 @@ import android.text.method.PasswordTransformationMethod
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lifelineapp.utils.FullScreenUtil
 import com.google.firebase.database.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,6 +27,9 @@ class ForgotPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_forgot)
+
+        // Set the activity to full-screen mode
+        FullScreenUtil.setupFullScreenMode(this, enableBackButton = true)
 
         // Initialize Firebase Database reference
         database = FirebaseDatabase.getInstance().reference
