@@ -49,17 +49,9 @@ Here are some test accounts for demonstration purposes:
 
 ## Screenshots
 
-### Login Page
-![Home Screen](./screenshots/login_page.png)
-
-### Health Page
-![Emergency Contact Screen](./screenshots/health_page.png)
-
-### Profile Page
-![Calendar View](./screenshots/profile_page.png)
-
-### Calendar View
-![Calendar View](./screenshots/calendar_page.png)
+| Login Page                             | Health Page                              | Profile Page                             | Calendar View                           |
+|----------------------------------------|------------------------------------------|------------------------------------------|-----------------------------------------|
+| ![Login Page](./screenshots/login_page.png) | ![Health Page](./screenshots/health_page.png) | ![Profile Page](./screenshots/profile_page.png) | ![Calendar View](./screenshots/calendar_page.png) |
 
 
 ## Contact Information
@@ -70,10 +62,9 @@ For further information or inquiries:
 
 For further information or inquiries:
 
-[![Email](./screenshots/gmail_logo.png)](mailto:hhzmuk@gmail.com)  
-[![Email](./screenshots/gmail_logo.png)](mailto:cpw694@autuni.ac.nz)
+[![Email](./screenshots/gmail_logo.webp)](mailto:hhzmuk@gmail.com)
 
-[![LinkedIn](./screenshots/linkedin_logo.png)](https://www.linkedin.com/in/hazeem-hussain786/)
+[![LinkedIn](./screenshots/linkedin_logo.jpg)](https://www.linkedin.com/in/hazeem-hussain786/)
 ---
 
 Thank you for exploring LifeLine! We aim to provide a seamless and secure experience for elderly individuals in smart homes.
