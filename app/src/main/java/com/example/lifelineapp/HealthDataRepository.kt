@@ -39,6 +39,8 @@ class HealthDataRepository(private val appContext: Context) {
                         val weight = snapshot.child("Weight").getValue(Int::class.java) ?: 0
                         val steps = snapshot.child("Steps").getValue(Int::class.java) ?: 0
 
+                        Log.d("HealthDataRepository", "Parsed health data: SleepHrs=$sleepHrs, Weight=$weight, Steps=$steps")
+
                         val healthData = HealthData(heartBeats, bloodPressureList, sleepHrs, weight, steps)
                         callback(healthData)
                     } catch (e: Exception) {
@@ -53,6 +55,7 @@ class HealthDataRepository(private val appContext: Context) {
                 }
             })
     }
+
 
     // Function to simulate heart rate changes and detect abnormal values
     fun startHeartRateSimulation(context: HealthActivity, callback: (Int?) -> Unit) {

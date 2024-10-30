@@ -44,7 +44,9 @@
         </activity> <!-- Declare other activities used in your app -->
         <activity
             android:name=".HealthActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode="singleTop" />
+
         <activity
             android:name=".ProfileActivity"
             android:exported="true" />

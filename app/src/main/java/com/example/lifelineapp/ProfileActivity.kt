@@ -72,9 +72,9 @@ class ProfileActivity : AppCompatActivity() {
 
             // Navigate back to the login screen
             val intent = Intent(this, LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clears the activity stack
             startActivity(intent)
             finish() // Ends the current activity
+
         }
 
         /**
@@ -217,6 +217,8 @@ class ProfileActivity : AppCompatActivity() {
 
         builder.show()
     }
+
+
 
     /**
      *Initializing UI components

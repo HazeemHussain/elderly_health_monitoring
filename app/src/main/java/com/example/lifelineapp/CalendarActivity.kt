@@ -3,6 +3,7 @@ package com.example.lifelineapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.TypedValue
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +37,6 @@ class CalendarActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_calendar)
 
-        // Set the activity to full-screen mode
         FullScreenUtil.setupFullScreenMode(this)
 
         // Initialize views
@@ -48,17 +48,13 @@ class CalendarActivity : AppCompatActivity() {
         appointmentsAdapter = AppointmentsAdapter(appointmentsList)
         appointmentsRecyclerView.adapter = appointmentsAdapter
 
-        // Convert spacing from dp to pixels
         val spacingInPixels = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP,
-            13f, // 16dp spacing
+            13f,
             resources.displayMetrics
         ).toInt()
-
-        // Add item decoration to RecyclerView
         appointmentsRecyclerView.addItemDecoration(SpaceItemRecyclerView(spacingInPixels))
 
-        // Fetch appointments from Firebase
         fetchAppointments()
 
         val addAppointmentButton: FloatingActionButton = findViewById(R.id.addAppointmentButton)
@@ -67,11 +63,19 @@ class CalendarActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Set up bottom bar
         val bottomBar = findViewById<AnimatedBottomBar>(R.id.navBar)
         BottomBarUtils.setupBottomBar(this, bottomBar)
+
+        // Set up the calendar date selection listener
+        calendarView.setOnDateChangedListener { _, date, _ ->
+            val selectedDateStr = dateFormat.format(date.date)
+            filterAppointmentsByDate(selectedDateStr)
+        }
     }
 
+    /**
+     * Function that fetches appointment data from firebase
+     */
     private fun fetchAppointments() {
         database.child("users").child("patients").child(patientId).child("appointments")
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -87,7 +91,6 @@ class CalendarActivity : AppCompatActivity() {
                         val appointment = Appointment(time, dateStr, address)
                         appointmentsList.add(appointment)
 
-                        // Parse the date string and add to calendar highlights
                         val date = dateFormat.parse(dateStr)
                         date?.let {
                             val calendar = Calendar.getInstance()
@@ -105,5 +108,23 @@ class CalendarActivity : AppCompatActivity() {
                 }
             })
     }
+
+    /**
+     * Filters appointments and updates the recycler view when an appointment is clicked on
+     * the calendar
+     */
+    private fun filterAppointmentsByDate(selectedDateStr: String) {
+        val filteredAppointments = appointmentsList.filter { it.date == selectedDateStr }
+
+        if (filteredAppointments.isNotEmpty()) {
+            val index = appointmentsList.indexOf(filteredAppointments[0])
+            appointmentsAdapter.updateData(filteredAppointments)
+            appointmentsRecyclerView.scrollToPosition(index)
+        } else {
+            Toast.makeText(this, "No appointments on this date", Toast.LENGTH_SHORT).show()
+            appointmentsAdapter.updateData(appointmentsList) // Reset to the full list
+        }
+    }
+
 }
 

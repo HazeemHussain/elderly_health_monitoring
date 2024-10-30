@@ -69,7 +69,7 @@
             android:background="#000000" />
 
         <!-- Date Selection -->
-        <EditText
+        <TextView
             android:id="@+id/appointmentDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,7 +79,9 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textColorHint="@color/black"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:focusable="true"
+            android:clickable="true" />
 
         <View
             android:layout_width="match_parent"
@@ -88,7 +90,7 @@
             android:background="#000000" />
 
         <!-- Time Selection -->
-        <EditText
+        <TextView
             android:id="@+id/appointmentTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,7 +100,9 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:focusable="true"
+            android:clickable="true" />
 
         <View
             android:layout_width="match_parent"
